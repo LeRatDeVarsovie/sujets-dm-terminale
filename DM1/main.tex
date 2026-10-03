@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{graphicx} 
+\usepackage{amssymb}
+\usepackage[most]{tcolorbox}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage{xcolor}
+\usepackage{pifont}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}   
+\usepackage[french]{babel}
+\usepackage{titling}
+\usepackage[
+    a4paper,
+    top=1.8cm,
+    bottom=2.4cm,
+    left=2.5cm,
+    right=2.5cm
+]{geometry}
+\usepackage{microtype}
+\usepackage{stmaryrd}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\predate{}
+\postdate{}
+\date{}
+
+
+\title{\textbf{DM Facultatif}}
+\author{Lucas et Loù}
+
+% Définition des encadrés avec titre
+\newtcolorbox{encadre}[1][]{
+  sharp corners,
+  colback=white,
+  colframe=black,
+  boxrule=0.4pt,
+  top=4pt, bottom=6pt, left=8pt, right=8pt,
+  #1
+}
+
+
+\begin{document}
+
+\maketitle
+
+\vspace{0.1 cm}
+
+\noindent Ce DM facultatif est proposé aux étudiants de la classe de terminale mathématiques expertes de \textsc{M. Luzy} (dont nous sommes d'anciens élèves) afin de s'entraîner sur des notions d'arithmétique qui dépassent assez largement le cadre du programme de terminale. Ce sujet s'adresse surtout aux étudiants qui envisagent de poursuivre les mathématiques après le baccalauréat (notamment ceux qui iront en CPGE) et qui veulent goûter à un sujet plus proche de ce à quoi ça ressemble dans le post-bac !
+
+\vspace{0.4 cm}
+\noindent\makebox[\textwidth][c]{\rule{\dimexpr\paperwidth-1cm\relax}{0.4pt}}
+\vspace{0.4 cm}
+
+\noindent Dans l'ensemble du sujet, on notera $\Z$ l'ensemble des entiers relatifs, $\N = \left \{ 0, 1, \thinspace \dots \right \}$ l'ensemble des entiers naturels et $\R$ l'ensemble des nombres réels. On notera de manière analogue $$\N^* = \N \setminus \left \{ 0 \right \}, \thinspace \Z^* = \Z \setminus \left \{ 0 \right \} \thinspace \text{ et } \thinspace\thinspace \R^* = \R \setminus \left \{ 0 \right \}$$
+
+\noindent Prenons $n \in \N^*$ et $a_1, \thinspace \dots, a_n$ $n$ éléments de $\R$, alors on notera toujours 
+$$\sum_{i=1}^n a_i = a_1 + \dots + a_n$$
+Plus généralement, si $k \in \N$, que $I = \left \{ i_1, \thinspace \dots, i_k \right \}$ est un sous-ensemble à $k$ éléments de $\N$ et que $a_{i_1}, \thinspace \dots, a_{i_k}$ sont $k$ éléments de $\R$, alors on notera toujours 
+$$\sum_{i \in I} a_i = a_{i_1} + \dots + a_{i_k}$$
+Si $I = \emptyset$, on prendra la convention 
+$$\sum_{i \in I} a_i = 0$$
+On utilisera aussi la notation
+$$\llbracket 1, n \rrbracket = \left \{ 1, \thinspace \dots, n \right \} \thinspace \thinspace \text{ et } \thinspace \thinspace \thinspace \llbracket 0, n \rrbracket =  \llbracket 1, n \rrbracket \cup \left \{ 0 \right \}$$
+pour désigner les intervalles d'entiers.\\
+\\
+Pour un entier $x \in \Z$ et $p \in \N^*$ premier, il est connu que $x$ possède une unique décomposition en produit de facteurs premiers \underline{à l'ordre des facteurs près}. Dès lors on définit la \textit{valuation $p$-adique} de $x$ (notée $v_p(x)$) comme l'exposant de $p$ dans la décomposition primaire de $x$.\\
+\\
+On a par exemple : \thinspace $v_3(27) = 3$, \thinspace $v_5(100) = 2$ ou encore $v_2(11) = 0$.\\
+\\
+Pour $n,k \in \N$ on définit le coefficient binomial $k$ parmi $n$ par 
+\[
+\binom{n}{k} = \begin{cases} 
+\dfrac{n!}{k!(n-k)!} & \text{si } 0 \le k \le n, \\[10pt]
+0 & \text{sinon.}
+\end{cases}
+\]
+
+\vspace{0.8 cm}
+
+\noindent Le but de ce problème est de démontrer le célèbre \textsc{LTE} (\textit{Lifting the exponent lemma}). \\
+$-$ Dans la \textbf{\textsc{Partie I}} (préliminaire) qui est la partie la plus abordable, on démontre plusieurs résultats classiques, présents dans le cours ou qui en restent très proches. 
+\\ $-$ La \textbf{\textsc{Partie II}} nous permet d'établir deux lemmes utiles à la preuve du théorème. \\
+$-$ Dans la \textbf{\textsc{Partie III}} on prouve finalement le \textsc{LTE} sous ses deux formes usuelles. \\
+$-$ Enfin la \textbf{\textsc{Partie IV}}, présente pour les enthousiastes et largement plus difficile que les trois autres parties élargit le cadre du \textsc{LTE} et montre une formule arithmétique classique dans le post-bac, \textit{la formule de Legendre}, qui donne une expression sommatoire de la valuation $p$-adique de $n!$.
+
+\newpage
+
+
+\section*{Partie I - Questions préliminaires}
+
+\vspace{0.3 cm}
+
+\noindent Soient $a,b \in \R$ et $n \in \N$.
+
+\vspace{0.1 cm}
+\begin{enumerate}[label=(\arabic*)]
+
+    \item Énoncer la formule du binôme de Newton, qui donne le développement de $(a+b)^n$.
+    \item On suppose de plus $a \neq 1$ et $n \geq 1$, montrer que 
+    $$\sum_{k=0}^{n-1} a^k = 1 + a + \dots + a^{n-1} = \dfrac{a^n - 1}{a - 1}$$
+    À partir de maintenant, on n'utilisera presque plus que le symbole $\sum$ pour écrire nos sommes, c'est une habitude qu'il est bon de prendre dans le supérieur !
+
+    \item On suppose $n \geq 1$, montrer que 
+    $$a^n - b^n = (a-b)\sum_{k=0}^{n-1} a^k b^{n-1-k}$$
+    \textit{On pourra éventuellement raisonner par récurrence, ou alors essayer généraliser la preuve de la question précédente en sommant la famille de réels \thinspace\thinspace $b^{n-1}, ab^{n-2}, \thinspace \dots, a^{n-2}b, a^{n-1}$}.
+
+    \vspace{0.2 cm}
+
+    \item La formule précédente est-elle, théoriquement, valable pour $n=0$ ?
+    \item Montrer, de deux manières différentes, que $$\dfrac{n(n+1)}{2} \thinspace \thinspace \thinspace \text{est un entier}$$
+    \textit{On pourra d'abord calculer la somme des $n$ premiers entiers naturels ce qui fournit une première preuve, ensuite on pourra s'intéresser aux valeurs prises par $n(n+1)$ modulo $2$.}
+
+    \vspace{0.2 cm}
+
+    \item On se donne $a \in \N$ et $n \geq 1$, montrer que si $a^n -1$ est premier, alors $a = 2$ et $n$ est un nombre premier.\\
+    \\
+    \textit{Cette question est plus difficile que les précédentes et ne sert pas dans la suite du problème, n'y passez pas trop de temps !\\
+    \\
+    Pour montrer que $a = 2$ on pourra utiliser la question $3$, ensuite pour prouver que $n$ est premier, on pourra supposer par l'absurde qu'il existe $\alpha, \beta \in \N^*$ tels que $n = \alpha \cdot \beta$.}
+
+    \vspace{0.2 cm}
+
+    \item Soient $x,y \in \Z$ et $n \in \N$, montrer que pour tout $p \in \N^*$ premier 
+    $$v_p(x \cdot y) = v_p(x) + v_p(y)$$
+    En déduire par récurrence que
+    $$v_p(x^n) = n \cdot v_p(x)$$
+
+    \vspace{0.2 cm}
+
+    \item \thinspace (\textit{Application}) \thinspace En utilisant un raisonnement par l'absurde \underline{et} les valuations $2$-adiques, montrer que $\sqrt{2}$ est irrationel.\\
+    \\
+    \textit{Considérer, par l'absurde, $p,q \in \N^*$ tels que $\sqrt{2} = \dfrac{p}{q}$, obtenir de là une équation ne faisant intervenir que des entiers puis passer aux valuations $2$-adiques. Que dire ?}
+\end{enumerate}
+
+\newpage
+
+\section*{Partie II - Deux lemmes utiles}
+\vspace{0.3 cm}
+
+\noindent Dans cette partie on démontre deux résultats qui sont essentiellement des formes moins fortes du LTE, et qui nous seront pas la suite utiles dans la preuve du théorème.
+
+\begin{encadre}
+  \underline{\textbf{\textsc{Lemme 1}}}~: Soient $x,y \in \Z$, $n \in \N^*$ et $p \in \N^*$ premier. On suppose de plus que $\text{pgcd}(n,p) = 1$, que $p$ divise $x - y$ mais que $p$ ne divise ni $x$, ni $y$, alors 
+  $$v_p(x^n - y^n) = v_p(x-y)$$
+\end{encadre}
+
+
+\vspace{0.1 cm}
+
+\begin{enumerate}[label=(\arabic*), start=9]
+  \item Neuvième question
+\end{enumerate}
+
+
+
+
+\end{document}
